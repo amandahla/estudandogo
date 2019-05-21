@@ -212,10 +212,65 @@ func main(){
 }
 ```
 
-- Se não precisar utilizar algum dos valores, basta substituir por "_".
+- Se não precisar de algum dos valores, basta substituir por "_".
 ```
 for _, v := range a {
 ```
+
+## Maps (https://tour.golang.org/moretypes/19)
+- Um map é um grupo de elementos de mesmo tipo indexados por um conjunto de chaves distintas de determinado tipo. Por exemplo:
+```
+var m map[int]string
+```
+É um conjunto de strings identificados por um int.
+- Da forma como foi declarada a variável m, trata-se de um map não inicializado logo seu valor é nil e não é possível adicionar itens nele.
+- Para inicializar um map, utiliza-se o "make". Por exemplo:
+```
+m = make(map[int]string)
+```
+- Se o map não for inicializado, ocorrerá o erro:
+```
+panic: assignment to entry in nil map
+```
+- Há questionamentos de por qual motivo ao se criar um map, já não é inicializado (veja mais em [Autovivification](https://en.m.wikipedia.org/wiki/Autovivification)). Um map é um ponteiro para uma hash table. Logo, se ela não existe, seu valor só pode ser nil e daí a necessidade de inicializar a variável com o make que criará a hash table a ser utilizada.
+- Referências: 
+https://dave.cheney.net/2017/04/30/if-a-map-isnt-a-reference-variable-what-is-it
+https://golang.org/ref/spec#Map_types
+https://github.com/golang/go/blob/master/src/runtime/map.go
+- É possível também declarar um map já com valores (literal)
+```
+package main
+
+import "fmt"
+
+var m = map[int]string{0: "abc"}
+
+func main() {
+	fmt.Println(m)
+}
+```
+Saída:
+```
+map[0:abc]
+```
+- Para inserir um elemento no map, basta determinar chave e valor:
+```
+m[0] = "abc"
+```
+- Para utilizar um item:
+```
+fmt.Println(m[0])
+```
+- Para deletar um item, utiliza-se o comando "delete":
+```
+delete(m, 0)
+```
+- Se precisar verificar se um item existe ou não:
+```
+v, ok := m[0]
+```
+Se existir, a variável "ok" estará setada como "true"
+
 
 # Exercícios
 1) O que o programa abaixo irá imprimir?
@@ -316,4 +371,12 @@ func main() {
 	fmt.Printf("len=%d cap=%d %v\n", len(a), cap(a), a)
 }
 ```
+
+7) Faça o exercício proposto em:
+https://tour.golang.org/moretypes/18
+Tema: Slices
+
+8) Faça o exercício proposto em:
+https://tour.golang.org/moretypes/23
+Tema: Maps
 
