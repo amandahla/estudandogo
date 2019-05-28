@@ -380,3 +380,72 @@ Tema: Slices
 https://tour.golang.org/moretypes/23
 Tema: Maps
 
+9) Os programas abaixo vão imprimir a mesma coisa?
+```
+package main
+
+import "fmt"
+
+func Foo(a []int) {
+    a[0] = 8
+}
+
+func main() {
+    a := []int{1, 2}
+    Foo(a)         
+    fmt.Println(a) 
+}
+```
+
+``` 
+package main
+
+import "fmt"
+
+func Foo(a [2]int) {
+    a[0] = 8
+}
+
+func main() {
+    a := [2]int{1, 2}
+    Foo(a)         
+    fmt.Println(a) 
+}
+```
+Temas: Arrays e Slices
+Referência (não ver antes de responder): https://yourbasic.org/golang/
+
+10) Responda a questão disponível em https://yourbasic.org/golang/gotcha-copy-missing/
+
+"Why does the copy disappear?"
+```
+var src, dst []int
+src = []int{1, 2, 3}
+copy(dst, src) // Copy elements to dst from src.
+fmt.Println("dst:", dst)
+```
+
+Saída:
+```
+dst: []
+```
+
+11) [OPCIONAL] [PEGADINHA] Responda a questão disponível em https://yourbasic.org/golang/gotcha-range-copy-array/
+
+"Why doesn’t the iteration variable x notice that a[1] has been updated?"
+```
+var a [2]int
+for _, x := range a {
+    fmt.Println("x =", x)
+    a[1] = 8
+}
+fmt.Println("a =", a)
+```
+
+Saída:
+```
+x = 0
+x = 0        <- Why isn't this 8?
+a = [0 8]
+```
+Tema: Arrays
