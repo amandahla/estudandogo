@@ -271,6 +271,68 @@ v, ok := m[0]
 ```
 Se existir, a variável "ok" estará setada como "true"
 
+## Function values / Function closures (https://tour.golang.org/moretypes/24)
+- Você pode passar funções como valores também.
+```
+package main
+
+import (
+	"fmt"
+)
+
+func compute(fn func(int, int) int) int {
+	return fn(3, 4)
+}
+
+func main() {
+	sum := func(x, y int) int {
+		return x + y
+	}
+	
+	multiply := func(x, y int) int {
+		return x * y
+	}
+	
+	fmt.Println(compute(sum))
+	fmt.Println(compute(multiply))
+}
+```
+- Closure é uma função passada por valor que consegue lidar com variáveis externas (fora do seu 'body').
+Referência: https://gobyexample.com/closures
+
+```
+package main
+
+import "fmt"
+
+func intSeq() func() int {
+    i := 0
+    return func() int {
+        i++
+        return i
+    }
+}
+
+func main() {
+    nextInt := intSeq()
+	
+    fmt.Println(nextInt())
+    fmt.Println(nextInt())
+    fmt.Println(nextInt())
+
+    newInts := intSeq()
+    fmt.Println(newInts())
+}
+```
+
+Saída:
+
+```
+1
+2
+3
+1
+```
 
 # Exercícios
 1) O que o programa abaixo irá imprimir?
@@ -449,3 +511,6 @@ x = 0        <- Why isn't this 8?
 a = [0 8]
 ```
 Tema: Arrays
+
+12) Faça o exercício proposto em: https://tour.golang.org/moretypes/26
+Tema: Function closure
