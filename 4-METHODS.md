@@ -168,11 +168,57 @@ Muito louco, né?
 - Analisando **dontChangeNumber(k)**. Ocorre o mesmo que já explicamos antes. A varíavel k não sofre alteração.
 
 - ATENÇÃO PARA A PEGADINHA
-- Veja o programa abaixo e deduza qual será a saída
+- Veja o programa abaixo. Será que vai dar erro? Qual a saída?
 ```
-methods with pointer receivers take either a value or a pointer as the receiver when
+package main
+
+import "fmt"
+
+type Chiclete struct {
+	Sabor string
+}
+
+func (c *Chiclete) MudarSabor(s string) {
+	c.Sabor = s
+}
+
+func main() {
+	c := Chiclete{"morango"}
+	fmt.Println(c)
+	c.MudarSabor("melancia")
+	fmt.Println(c)
+	
+	p := &Chiclete{"banana"}
+	fmt.Println(p)
+	p.MudarSabor("uva")
+	fmt.Println(p)
+}
 ```
+
 - Resposta:
+Parece estranho que tanto a variável c do tipo Chiclete quanto a variável p do tipo ponteiro para Chiclete funcionem da mesma maneira ao chamar o método MudarSabor mas esse é um comportamento esperado em Go pois métodos que recebem ponteiros também aceitam valores. Go interpreta o "c.MudarSabor" como "(&c).MudarSabor"
+
+Faça agora o exercício 3 e veja como se comporta no caso contrário: o método espera valor mas recebe ponteiro.
+
+Como escolher se o meu método vai receber valor ou ponteiro? 
+- Usando ponteiro, o método poderá alterar o valor da variável.
+- Usando ponteiro, você evita que o valor seja copiado para toda vez que o método for chamado.
+
+Tópico Avançado:
+- Um ponteiro é uma variável que contém um endereço de memória onde está armazenado determinado valor.
+- Esse valor deve ficar armazenado na heap até não estar mais em uso e quem verifica isso é o Garbage Collector. #javafeelings
+- Quanto mais valores lá, mais trabalho o Garbage Collector terá.
+
+Então, ao decidir por usar ponteiros, considere os prós e contras no contexto da sua aplicação.
+
+Referências:
+
+https://medium.com/@vCabbage/go-are-pointers-a-performance-optimization-a95840d3ef85
+
+https://segment.com/blog/allocation-efficiency-in-high-performance-go-services/
+
+https://blog.gopheracademy.com/advent-2018/avoid-gc-overhead-large-heaps/
+
 
 # Exercícios
 1) Crie um método que calcula quantos anos a pessoa têm a partir da sua data de nascimento (não precisa se preocupar muito com precisão).
@@ -183,3 +229,5 @@ Tema: Methods
 2) Aproveitando a struct Person do primeiro exemplo, crie um método que altere o atributo name.
 Tema: Pointer receivers
 
+3) Aproveitando o exemplo onde consta o tipo Chiclete, o que aconteceria se mudasse de "func (c *Chiclete) MudarSabor(s string)" para "func (c Chiclete) MudarSabor(s string)"?
+Tema: Pointer receivers
