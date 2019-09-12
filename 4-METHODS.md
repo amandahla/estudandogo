@@ -167,8 +167,19 @@ Muito louco, né?
 
 - Analisando **dontChangeNumber(k)**. Ocorre o mesmo que já explicamos antes. A varíavel k não sofre alteração.
 
+- ATENÇÃO PARA A PEGADINHA
+- Veja o programa abaixo e deduza qual será a saída
+```
+methods with pointer receivers take either a value or a pointer as the receiver when
+```
+- Resposta:
 
 # Exercícios
 1) Crie um método que calcula quantos anos a pessoa têm a partir da sua data de nascimento (não precisa se preocupar muito com precisão).
 
 Dica: https://golang.org/pkg/time/#Time.Sub
+Tema: Methods
+
+2) Aproveitando a struct Person do primeiro exemplo, crie um método que altere o atributo name.
+Tema: Pointer receivers
+

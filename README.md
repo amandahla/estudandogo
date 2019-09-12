@@ -17,6 +17,12 @@ https://golang.org/doc/install
 ## Treinamento baseado no Tour
 https://tour.golang.org/welcome/1
 
+## Roteiro
+1) [BASICS](1-BASICS.md)
+2) [FLOW CONTROL](2-FLOWCONTROL.md)
+3) [MORE TYPES](3-MORETYPES.md)
+4) [METHODS](4-METHODS.md)
+
 ## Como fazer os exercícios
 1) Go deve estar instalado
 https://golang.org/doc/install
@@ -34,3 +40,6 @@ go run 1.go
 
 Sugestão de IDE: Visual Studio Code mas qualquer editor de texto serve.
 
+## O que ler depois?
+- [Effective Go](https://golang.org/doc/effective_go.html)
+- [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
