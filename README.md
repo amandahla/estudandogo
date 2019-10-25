@@ -22,6 +22,7 @@ https://tour.golang.org/welcome/1
 2) [FLOW CONTROL](2-FLOWCONTROL.md)
 3) [MORE TYPES](3-MORETYPES.md)
 4) [METHODS](4-METHODS.md)
+5) [INTERFACES](5-INTERFACES.md)
 
 ## Como fazer os exercícios
 1) Go deve estar instalado
